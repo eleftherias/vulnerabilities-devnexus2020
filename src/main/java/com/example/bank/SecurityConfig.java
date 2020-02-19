@@ -18,11 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionFixation(sessionFixation -> sessionFixation
-                                .none()
-                        )
-                )
                 .csrf(csrf -> csrf
                     .disable()
                 )
