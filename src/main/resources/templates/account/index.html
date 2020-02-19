@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="utf-8">
+    <title>Account</title>
+</head>
+<body>
+<h1>Account</h1>
+<p>Welcome <span th:text="${currentUser.firstName}"></span></p>
+<p>Your balance is <span th:text="${#numbers.formatCurrency(account.balance)}"></span></p>
+<h2>Requested Money</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>From</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Approve</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="request : ${transfers}">
+            <td th:text="${request.transferTo.owner.email}"></td>
+            <td th:text="${#numbers.formatCurrency(request.amount)}"></td>
+            <td th:text="${request.description}"></td>
+            <td><form th:action="@{/account/request/approve}" method="post"><input type="hidden" name="requestId" th:value="${request.id}"><input type="submit" value="Approve" class="button"></form></td>
+        </tr>
+        <tr th:if="${transfers.empty}">
+            <td colspan="4">No transfer requests</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

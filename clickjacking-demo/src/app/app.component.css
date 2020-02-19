@@ -1,0 +1,21 @@
+body {
+  text-align: center;
+}
+
+.fake-button {
+  position: absolute;
+  left: 545px;
+  top: 285px;
+  border-radius: 4px;
+  padding: 2px;
+  font-size: 16px;
+  z-index: -1;
+  width: 94px;
+  background-color: #f6921e;
+  font-family: monospace;
+}
+
+iframe {
+  opacity: 0.0000000001;
+  z-index: 1;
+}
