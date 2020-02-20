@@ -18,11 +18,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
-                .csrf(csrf -> csrf
-                    .disable()
-                )
                 .headers(headers -> headers
                     .disable()
                 );
+    }
+
+    @Bean
+    public CookieSerializer cookieSerializer() {
+        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
+        serializer.setCookieName("SESSION");
+        serializer.setCookiePath("/");
+        serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$");
+        serializer.setSameSite(null);
+        return serializer;
     }
 }
