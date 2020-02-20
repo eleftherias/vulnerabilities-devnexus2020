@@ -17,10 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(requests -> requests
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
-                .headers(headers -> headers
-                    .disable()
-                );
+                .formLogin(withDefaults());
     }
 
     @Bean
