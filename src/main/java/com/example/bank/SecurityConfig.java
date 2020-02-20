@@ -25,14 +25,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .disable()
                 );
     }
-
-    @Bean
-    public CookieSerializer cookieSerializer() {
-        DefaultCookieSerializer serializer = new DefaultCookieSerializer();
-        serializer.setCookieName("SESSION");
-        serializer.setCookiePath("/");
-        serializer.setDomainNamePattern("^.+?\\.(\\w+\\.[a-z]+)$");
-        serializer.setSameSite(null);
-        return serializer;
-    }
 }
